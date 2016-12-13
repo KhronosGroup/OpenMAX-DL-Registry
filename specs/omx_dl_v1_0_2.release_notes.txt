@@ -1,0 +1,130 @@
+Release Note: Khronos OpenMAX DL v1.0.2, January 2008.
+======================================================
+
+
+Summary
+=======
+ 
+Based on feedback from users and implementors the v1.0.2 OpenMAX DL 
+specification has been improved. Unfortunately some of the changes 
+may require minor alterations to some existing applications that 
+use the v1.0.1 API. No functions have been removed, however a few 
+have been renamed.
+
+Differences between the current version 1.0.2 of the specification 
+and the previous version 1.0.1 include:
+
+-  clarifications to descriptions of functions, parameters and return 
+   codes to remove ambiguities about their operation.
+
+-  name changes of twenty-two color conversion function names to 
+   more clearly describe their operation, and the order of storage 
+   of their individual color components.
+   
+-  name changes to a few enumerated values for similar reasons.
+
+-  prototype parameter modifications to four functions only.
+
+-  a re-write of the return codes section including a return codes table 
+   update.
+
+-  many typographical errors have been corrected.
+
+For the full details on the actual changes a redline document showing 
+the changes between version 1.0.1 and version 1.0.2 is available.
+
+The changes most likely to impact existing applications are itemised below.
+
+
+Function Name Changes
+=====================
+
+The color conversion functions are renamed to more clearly describe 
+the data formats used:
+
+-  all functions names referring to the RGB color space are changed 
+   to use BGR instead.
+   
+-  two function names previously containing "YCbCr422" are now 
+   renamed "CbYCrY422" to make the data format in memory clearer.
+
+-  two function names previously containing "YCbCr422" are now 
+   renamed "YCbYCr422" to make the data format in memory clearer.
+
+The full list of function name changes is here:
+ 
+ 
+Old Function Name								New Function Name
+-----------------							    -----------------
+
+omxIPCS_YCbCr444ToRGB888_U8_C3R		            	omxIPCS_YCbCr444ToBGR888_U8_C3R
+omxIPCS_YCbCr444ToRGB565_U8_U16_C3R		        omxIPCS_YCbCr444ToBGR565_U8_U16_C3R
+omxIPCS_YCbCr444ToRGB565_U8_U16_P3C3R		    	omxIPCS_YCbCr444ToBGR565_U8_U16_P3C3R
+omxIPCS_YCbCr420ToRGB565_U8_U16_P3C3R		    	omxIPCS_YCbCr420ToBGR565_U8_U16_P3C3R
+omxIPCS_YCbCr422ToRGB888_U8_C2C3R		        omxIPCS_YCbYCr422ToBGR888_U8_C2C3R
+omxIPCS_YCbCr422ToRGB565_U8_U16_C2C3R		    	omxIPCS_YCbYCr422ToBGR565_U8_U16_C2C3R
+omxIPCS_YCbCr422RszCscRotRGB_U8_U16_C2R			omxIPCS_CbYCrY422RszCscRotBGR_U8_U16_C2R
+omxIPCS_YCbCr420RszCscRotRGB_U8_P3C3R		  	omxIPCS_YCbCr420RszCscRotBGR_U8_P3C3R
+omxIPCS_YCbCr422RszCscRotRGB_U8_P3C3R		  	omxIPCS_YCbCr422RszCscRotBGR_U8_P3C3R
+omxIPCS_YCbCr422ToYCbCr420Rotate_U8_C2P3R		omxIPCS_CbYCrY422ToYCbCr420Rotate_U8_C2P3R
+omxIPCS_RGB888ToYCbCr444LS_MCU_U8_S16_C3P3		omxIPCS_BGR888ToYCbCr444LS_MCU_U8_S16_C3P3
+omxIPCS_RGB888ToYCbCr422LS_MCU_U8_S16_C3P3		omxIPCS_BGR888ToYCbCr422LS_MCU_U8_S16_C3P3
+omxIPCS_RGB888ToYCbCr420LS_MCU_U8_S16_C3P3		omxIPCS_BGR888ToYCbCr420LS_MCU_U8_S16_C3P3
+omxIPCS_RGB565ToYCbCr444LS_MCU_U16_S16_C3P3		omxIPCS_BGR565ToYCbCr444LS_MCU_U16_S16_C3P3
+omxIPCS_RGB565ToYCbCr422LS_MCU_U16_S16_C3P3		omxIPCS_BGR565ToYCbCr422LS_MCU_U16_S16_C3P3
+omxIPCS_RGB565ToYCbCr420LS_MCU_U16_S16_C3P3 		omxIPCS_BGR565ToYCbCr420LS_MCU_U16_S16_C3P3 
+omxIPCS_YCbCr444ToRGB888LS_MCU_S16_U8_P3C3		omxIPCS_YCbCr444ToBGR888LS_MCU_S16_U8_P3C3
+omxIPCS_YCbCr422ToRGB888LS_MCU_S16_U8_P3C3		omxIPCS_YCbCr422ToBGR888LS_MCU_S16_U8_P3C3
+omxIPCS_YCbCr420ToRGB888LS_MCU_S16_U8_P3C3		omxIPCS_YCbCr420ToBGR888LS_MCU_S16_U8_P3C3
+omxIPCS_YCbCr444ToRGB565LS_MCU_S16_U16_P3C3		omxIPCS_YCbCr444ToBGR565LS_MCU_S16_U16_P3C3
+omxIPCS_YCbCr422ToRGB565LS_MCU_S16_U16_P3C3		omxIPCS_YCbCr422ToBGR565LS_MCU_S16_U16_P3C3
+omxIPCS_YCbCr420ToRGB565LS_MCU_S16_U16_P3C3		omxIPCS_YCbCr420ToBGR565LS_MCU_S16_U16_P3C3
+
+
+
+Enumerated Value Changes
+========================
+
+In enum OMXIPColorSpace:
+
+   OMX_IP_RGB565 is now OMX_IP_BGR565
+   OMX_IP_RGB555 is now OMX_IP_BGR555
+   OMX_IP_RGB444 is now OMX_IP_BGR444
+   OMX_IP_RGB888 is now OMX_IP_BGR888
+
+
+Changes to function prototypes
+==============================
+
+The prototypes of the following four functions were modified:
+
+-  omxVCM4P10_MotionEstimationMB (section 6.3.5.3.1)
+   ... parameter "pDstBlockSAD" has been added
+
+-  omxVCM4P2_MotionEstimationMB (section 6.2.4.3.1) 
+   ... parameters are rewritten to more closely match the M4P10 equivalent (above).
+
+-  omxVCM4P2_QuantInvInter_I (6.2.5.3.2) 
+   ... parameter "shortVideoHeader" is removed.
+
+-  omxACAAC_MDCTInv_S32_S16 (section 3.2.3.5.2)
+   ... parameter "pSrcSpectralCoefs" is now specified as a "const" value.
+
+
+Changes to data structures
+==========================
+
+The "OMXAACADTSFrameHeader" structure defined in the audio coding 
+section 3.2.2.2 is modified by removing the "emphasis" element.
+ 
+Structure element "OMXMP3SideInfo cnt1TabSel" was previously erroneously 
+written as "cntlTabSel", but as it stands for "count1 table index" so 
+the "l" should be a "1".
+
+Structure "OMXAAXLtpInfo" contains an element "ltpcoef" that has changed 
+its meaning from an index into a table of coefficients (range 0-7), to 
+being the indicated coefficient itself in Q14 format (range 9352 to 22438).
+
+
+=== End of release note === 
+
