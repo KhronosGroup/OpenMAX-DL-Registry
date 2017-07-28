@@ -1,17 +1,8 @@
 <?php
 $static_title = 'Khronos OpenMAX DL Registry';
-$static_breadcrumb = array(
-    '/registry/' => 'Registry',
-    'NOLINK' => 'OpenMAX DL Registry'
-);
+
 include_once("../../assets/static_pages/khr_page_top.php");
 ?>
-
-<h1 class="pagetitle">Khronos OpenMAX&trade; DL API Registry</h1>
-<div id="mainformat">
-
-
-<h1 style="text-align:center"> Khronos OpenMAX&trade; DL Registry </h1>
 
 <p> The OpenMAX DL registry contains specifications of the core API;
     header files corresponding to the specifications; and
